@@ -1,0 +1,2 @@
+/*7.6. Informar aquellos títulos que tengan más de un autor. Mostrar código de título y cantidad de
+autores.*/use editorialgoselect ta.titulo_id, count(ta.autor_id) as 'cantidad de autores'from titulo_autor tagroup by ta.titulo_idhaving count(ta.autor_id) > 1

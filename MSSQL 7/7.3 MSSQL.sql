@@ -1,0 +1,2 @@
+/*7.3. Informar la última orden generada por cada almacén con forma de pago a 30 días y 60 días.
+Mostrar código de almacén, fecha de la orden y forma de pago. Ordenar por fecha de orden.*/use editorial goselect a.almacen_id, max(v.fecha_orden) as fech_orden, v.forma_pago from ventas v, almacenes awhere v.almacen_id = a.almacen_id	and (v.forma_pago = '30 días'		or v.forma_pago = '60 días')group by a.almacen_id, v.forma_pago order by max(v.fecha_orden)
