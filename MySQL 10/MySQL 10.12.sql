@@ -5,3 +5,6 @@ del autor y monto a pagar. Tener en cuenta que hay que operar la regalía del t�
 la regalía del autor respecto a ese libro.*/
 use editorial;
 
+select * from autores;
+select * from titulos;
+select * from ventas;

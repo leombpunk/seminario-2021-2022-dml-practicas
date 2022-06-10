@@ -44,3 +44,22 @@ where exists(
 	);
     
 ## Modificaciones
+select t.titulo, e.editorial_nombre 
+from titulos t
+inner join editoriales e on t.editorial_id = e.editorial_id
+where year(fecha_publicacion) <= '2013'
+	and t.titulo_id not in(
+		select titulo_id 
+        from ventas
+		where year(fecha_orden) between 2011 and 2013
+	); ##creo que funcionó
+    
+select t.titulo, e.editorial_nombre 
+from titulos t
+inner join editoriales e on t.editorial_id = e.editorial_id
+where year(t.fecha_publicacion) <= '2013' 
+	and not exists(
+		select 1 
+        from ventas
+		where year(fecha_orden) between 2011 and 2013
+	); ## no funcionó
