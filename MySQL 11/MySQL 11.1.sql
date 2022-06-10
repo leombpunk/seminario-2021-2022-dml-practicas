@@ -25,4 +25,19 @@ inner join (
 	from empleados e 
 	group by e.editorial_id
 	having cant_cargos = 1 and e.cargo_id = (select cargo_id from cargos where cargo_descripcion = 'Editor')
-) algo on ed.editorial_id = algo.editorial_id;
+) algo on ed.editorial_id = algo.editorial_id
+
+--prueba manija
+select ed.editorial_id, ed.editorial_nombre
+from editoriales ed 
+inner join empleados em on ed.editorial_id = em.editorial_id
+inner join cargos c on em.cargo_id = c.cargo_id
+where c.cargo_descripcion = 'Editor' 
+	and em.editorial_id not in(
+		select editorial_id 
+		from empleados 
+		inner join cargos on empleados.cargo_id = cargos.cargo_id
+		where cargo_descripcion <> 'Editor'
+		group by editorial_id
+	)
+group by ed.editorial_id, ed.editorial_nombre
