@@ -18,6 +18,7 @@ from empleados e
 group by e.editorial_id
 having cant_cargos = 1 and e.cargo_id = (select cargo_id from cargos where cargo_descripcion = 'Editor');
 
+## solo funciona en MySQL
 select ed.editorial_nombre 
 from editoriales ed
 inner join (
@@ -25,9 +26,9 @@ inner join (
 	from empleados e 
 	group by e.editorial_id
 	having cant_cargos = 1 and e.cargo_id = (select cargo_id from cargos where cargo_descripcion = 'Editor')
-) algo on ed.editorial_id = algo.editorial_id
+) algo on ed.editorial_id = algo.editorial_id;
 
---prueba manija
+/*prueba manija*/
 select ed.editorial_id, ed.editorial_nombre
 from editoriales ed 
 inner join empleados em on ed.editorial_id = em.editorial_id
